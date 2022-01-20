@@ -38,8 +38,9 @@ const usersPost = async (req = request, res = response) => {
 
 const usersDelete = async (req = request, res = response) => {
   const { id } = req.params;
+  const AuthenticatedUser = req.user;
   const user = await User.findByIdAndUpdate(id, { status: false });
-  res.json(user);
+  res.json({ user, AuthenticatedUser });
 };
 
 const usersPut = async (req = request, res = response) => {
