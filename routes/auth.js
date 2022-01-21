@@ -3,7 +3,7 @@ const { check } = require("express-validator");
 
 const { validateForm } = require("../middlewares/validate-form");
 
-const { login } = require("../controllers/auth");
+const { login, googleSignIn } = require("../controllers/auth");
 
 const router = Router();
 
@@ -15,6 +15,12 @@ router.post(
     validateForm,
   ],
   login
+);
+
+router.post(
+  "/google",
+  [check("id_token", "id_toke is required").notEmpty(), validateForm],
+  googleSignIn
 );
 
 module.exports = router;
