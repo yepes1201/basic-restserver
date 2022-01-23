@@ -1,6 +1,6 @@
 const { request, response } = require("express");
 const bcryptjs = require("bcryptjs");
-const User = require("../models/user");
+const { User } = require("../models");
 
 const { generateJWT } = require("../helpers/generate-jwt");
 const { validateGoogleSignIn } = require("../helpers/google-verify");
@@ -28,7 +28,7 @@ const login = async (req = request, res = response) => {
     const validPassword = bcryptjs.compareSync(password, user.password);
     if (!validPassword) {
       return res.status(400).json({
-        msg: "User / Password doesnt exist - PASSWORD",
+        msg: "User / Password doens't match - PASSWORD",
       });
     }
 
