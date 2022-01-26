@@ -55,6 +55,15 @@ const productNameExist = async (name = "") => {
   }
 };
 
+const validCollections = (collection = "", collections = []) => {
+  if (!collections.includes(collection)) {
+    throw new Error(
+      `The collection ${collection} is forbidden. Valid collections: ${collections}`
+    );
+  }
+  return true;
+};
+
 module.exports = {
   isRoleValid,
   emailExist,
@@ -64,4 +73,5 @@ module.exports = {
   categoryNameExist,
   productExist,
   productNameExist,
+  validCollections,
 };
